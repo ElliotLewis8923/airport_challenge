@@ -17,7 +17,10 @@ describe Airport do
       airport.land(plane)
     end
     
-    xit 'a plane can take off' do
+    it 'a plane can take off' do
+      plane = double (:plane)
+      allow(plane).to receive(:take_off)
+      airport.take_off(plane)
     end
   end
   
