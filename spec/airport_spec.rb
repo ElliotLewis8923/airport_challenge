@@ -26,7 +26,7 @@ describe Airport do
   context 'traffic control' do
 
     def fill(airport)
-      10.times { airport.land(plane) }
+      10.times { airport.land(:plane) }
     end
 
     it 'can be full' do
@@ -50,13 +50,14 @@ describe Airport do
       expect(airport).not_to be_empty
     end
 
+
     
     it 'a plane cannot land if the airport is full' do
       plane = double (:plane)
       allow(plane).to receive(:land)
       fill(airport)
       expect(airport).to be_full
-      expect(airport.land(plane)).to raise_error(RuntimeError)
+      expect{ (airport.land(plane)) }.to raise_error(RuntimeError)
     end
     
     # Include a weather condition using a module.

@@ -1,24 +1,25 @@
 class Airport
 
 	def initialize
-		@planes = false
+		@planes = []
 	end
 
 	def land(plane)
-		@planes = true
+		raise 'full' if @planes.count == 10
+		@planes << plane
 	end
 
 	def take_off(plane)
-		@planes = false
+		@planes.pop
 	end
 
 
 	def full?
-		@planes 
+		@planes.count == 10
 	end
 
 	def empty?
-		@planes == false
+		@planes.count == 0
 	end
 
 end
