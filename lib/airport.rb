@@ -6,4 +6,9 @@ class Airport
 	def take_off(plane)
 	end
 
+
+	def full?
+		true
+	end
+
 end

@@ -7,7 +7,8 @@ require 'airport'
 #
 # If the airport is full then no planes can land
 describe Airport do
-  let(:airport) { Airport.new }
+  let(:airport) { Airport.new   }
+  let(:plane)   { double :plane }
   
   context 'taking off and landing' do
 
@@ -25,12 +26,22 @@ describe Airport do
   end
   
   context 'traffic control' do
+
+    def fill(airport)
+      10.times { airport.land(plane) }
+    end
+
+    it 'can be full' do
+      fill(airport)
+      expect(airport).to be_full
+    end
     
-    it 'a plane cannot land if the airport is full' do
+    xit 'a plane cannot land if the airport is full' do
       plane = double (:plane)
       allow(plane).to receive(:land)
-      airport.fill(plane)
-      expect(airport.land(plane).to raise_error(RuntimeError)
+      fill(airport)
+      expect(airport).to be_full
+      expect(airport.land(plane)).to raise_error(RuntimeError)
     end
     
     # Include a weather condition using a module.
@@ -45,7 +56,12 @@ describe Airport do
       end
       
       xit 'a plane cannot land in the middle of a storm' do
+      
+    
+
       end
     end
   end
 end
+
+
