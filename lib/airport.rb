@@ -9,11 +9,12 @@ class Airport
 	end
 
 	def take_off(plane)
+		@planes = false
 	end
 
 
 	def full?
-		true
+		@planes 
 	end
 
 	def empty?

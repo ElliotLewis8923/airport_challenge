@@ -34,6 +34,13 @@ describe Airport do
       expect(airport).to be_full
     end
 
+    it 'will not be full if a plane takes off' do
+      fill(airport)
+      expect(airport).to be_full
+      airport.take_off(plane)
+      expect(airport).not_to be_full
+    end
+
     it 'can be empty' do
       expect(airport).to be_empty
     end
