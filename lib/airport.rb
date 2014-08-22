@@ -1,6 +1,11 @@
 class Airport
 
+	def initialize
+		@planes = false
+	end
+
 	def land(plane)
+		@planes = true
 	end
 
 	def take_off(plane)
@@ -12,7 +17,7 @@ class Airport
 	end
 
 	def empty?
-		true
+		@planes == false
 	end
 
 end

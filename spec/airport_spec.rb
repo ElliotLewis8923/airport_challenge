@@ -38,6 +38,11 @@ describe Airport do
       expect(airport).to be_empty
     end
 
+    it 'will not be empty if a plane is landed' do
+      airport.land(plane)
+      expect(airport).not_to be_empty
+    end
+
     
     xit 'a plane cannot land if the airport is full' do
       plane = double (:plane)
