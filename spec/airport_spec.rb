@@ -25,7 +25,12 @@ describe Airport do
   end
   
   context 'traffic control' do
-    xit 'a plane cannot land if the airport is full' do
+    
+    it 'a plane cannot land if the airport is full' do
+      plane = double (:plane)
+      allow(plane).to receive(:land)
+      airport.fill(plane)
+      expect(airport.land(plane).to raise_error(RuntimeError)
     end
     
     # Include a weather condition using a module.
