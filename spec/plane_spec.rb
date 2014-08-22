@@ -18,11 +18,13 @@ describe Plane do
   it 'can take off' do
   	allow(plane).to receive(:take_off!)
   	plane.take_off!
-  	expect(plane).to be_flying
   end
   
-  xit 'has a flying status when in the air' do
-  end
+  it 'has a flying status after taking off' do
+  	allow(plane).to receive(:take_off!)
+  	plane.take_off!
+  	expect(plane).to be_flying
+	end
   
   xit 'changes its status to flying after taking of' do
   end
