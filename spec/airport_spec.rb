@@ -51,7 +51,7 @@ describe Airport do
     end
 
     
-    xit 'a plane cannot land if the airport is full' do
+    it 'a plane cannot land if the airport is full' do
       plane = double (:plane)
       allow(plane).to receive(:land)
       fill(airport)
