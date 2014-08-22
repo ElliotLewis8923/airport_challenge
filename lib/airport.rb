@@ -11,4 +11,8 @@ class Airport
 		true
 	end
 
+	def empty?
+		true
+	end
+
 end

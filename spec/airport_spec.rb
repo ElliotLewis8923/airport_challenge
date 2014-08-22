@@ -13,13 +13,11 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-      plane = double (:plane)
       allow(plane).to receive(:land)
       airport.land(plane)
     end
     
     it 'a plane can take off' do
-      plane = double (:plane)
       allow(plane).to receive(:take_off)
       airport.take_off(plane)
     end
@@ -35,6 +33,11 @@ describe Airport do
       fill(airport)
       expect(airport).to be_full
     end
+
+    it 'can be empty' do
+      expect(airport).to be_empty
+    end
+
     
     xit 'a plane cannot land if the airport is full' do
       plane = double (:plane)
