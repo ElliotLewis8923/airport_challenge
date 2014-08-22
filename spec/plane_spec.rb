@@ -11,20 +11,18 @@ describe Plane do
  
   let(:plane) { Plane.new }
 
+  it 'is flying when created' do
+  	expect(plane).to be_flying
+  end
+
   it 'can take off' do
-  	airport = double (:airport)
   	allow(plane).to receive(:take_off!)
   	plane.take_off!
   	expect(plane).to be_flying
   end
   
-  xit 'has is flying when created' do
-  end
-  
   xit 'has a flying status when in the air' do
   end
-  
-  
   
   xit 'changes its status to flying after taking of' do
   end
