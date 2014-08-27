@@ -9,19 +9,16 @@ require 'airport'
 
 describe Airport do
   let(:airport) { Airport.new   }
-  let(:plane)   { double :plane }
+  let(:plane)   { double (:plane), :take_off! => nil, :land! => nil  }
   
   
   context 'taking off and landing' do
 
     it 'a plane can land' do
-      allow(plane).to receive(:land!)
       airport.land(plane)
     end
     
     it 'a plane can take off' do
-      allow(plane).to receive(:take_off!)
-      plane.take_off!
       airport.take_off(plane)
     end
   
@@ -29,7 +26,7 @@ describe Airport do
   
   
     def fill(airport)
-      10.times { airport.land(:plane) }
+      6.times { airport.land(plane) }
     end
 
     it 'can be full' do
@@ -58,12 +55,37 @@ describe Airport do
     
     it 'a plane cannot land if the airport is full' do
       plane = double (:plane)
-      allow(plane).to receive(:land)
       fill(airport)
       expect(airport).to be_full
       expect{ (airport.land(plane)) }.to raise_error(RuntimeError)
     end
-  
+
   end
 
+        # grand final
+    # Given 6 planes, each plane must land. When the airport is full, every plane must take off again.
+    # Be careful of the weather, it could be stormy!
+    # Check when all the planes have landed that they have the right status "landed"
+    # Once all the planes are in the air again, check that they have the status of flying!
+    describe "The grand finale (last spec)" do
+
+      before :each do
+      Airport.any_instance.stub(:stormy?).and_return false
+      plane.stub(:flying?).and_return false
+      
+      it 'all planes can land and all planes can take off' do
+        6.times { airport.land(plane) }
+        expect(planes.each { |plane| plane.flying? }).to eq false
+        plane.stub(:flying?).and_return false
+        6.times { airport.take_off(plane) }
+        expect(flying_planes.each { |plane| plane.flying? }).to eq true
+      end
+
+    end
+
+  end
 end
+
+
+
+

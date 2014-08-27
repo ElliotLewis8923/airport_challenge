@@ -1,4 +1,8 @@
+require 'weather_conditions'
+
 class Plane
+
+	include WeatherConditions
 
 	def initialize
 		@flying = true

@@ -1,25 +1,42 @@
+require 'weather_conditions'
+require 'plane'
+
 class Airport
+
+	include WeatherConditions
 
 	def initialize
 		@planes = []
+		@flying_planes = []
 	end
 
 	def land(plane)
-		raise 'full' if @planes.count == 10
+		super
+		raise 'full' if @planes.count == 6
+		plane.land!
 		@planes << plane
 	end
 
 	def take_off(plane)
-		@planes.pop
+		super
+		plane.take_off!
+		@flying_planes << @planes.pop
 	end
 
-
 	def full?
-		@planes.count == 10
+		@planes.count == 6
 	end
 
 	def empty?
 		@planes.count == 0
+	end
+
+	def planes
+		@planes
+	end
+
+	def flying_planes
+		@flying_planes
 	end
 
 end

@@ -7,22 +7,29 @@
     # the plane can not land, and must not be in the airport
 
 require 'weather_conditions'
+require 'airport'
 
 class WeatherConditionsTest; include WeatherConditions; end
 
     describe WeatherConditionsTest do
 
       let(:weather) { WeatherConditionsTest.new }
-      let(:airport) { double :airport           }
-      let(:plane)   { double :plane             }
-      
+      let(:plane)   { double :plane             }    
 
     context 'weather conditions' do
 
-      xit 'a plane cannot take off when there is a storm brewing' do
+      before :each do 
+        WeatherConditionsTest.any_instance.stub(:stormy?).and_return true
+      end
+
+      it 'a plane cannot take off when there is a storm brewing' do
+        weather.god_mode!
+        expect{weather.take_off(plane)}.to raise_error
       end
       
-      xit 'a plane cannot land in the middle of a storm' do
+      it 'a plane cannot land in the middle of a storm' do
+        weather.god_mode!
+        expect{weather.land(plane)}.to raise_error
       end
 
     end
